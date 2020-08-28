@@ -10,7 +10,7 @@ namespace Sbt.Test.Refactoring.Tests
         [TestMethod]
         public void TestShouldMoveForward()
         {
-            Tractor tractor = new Tractor();
+            Tractor tractor = new Tractor(new Field() {Height = 5, Width = 5});
             var moveCommand = new MoveForwardCommand(tractor);
             
             moveCommand.Execute();
@@ -22,7 +22,7 @@ namespace Sbt.Test.Refactoring.Tests
         [TestMethod]
         public void TestShouldTurn()
         {
-            Tractor tractor = new Tractor();
+            Tractor tractor = new Tractor(new Field() { Height = 5, Width = 5 });
             var turnCommand = new TurnClockwiseCommand(tractor);
 
             turnCommand.Execute();
@@ -41,7 +41,7 @@ namespace Sbt.Test.Refactoring.Tests
         [TestMethod]
         public void TestShouldTurnAndMoveInTheRightDirection()
         {
-            Tractor tractor = new Tractor();
+            Tractor tractor = new Tractor(new Field() { Height = 5, Width = 5 });
             var moveCommand = new MoveForwardCommand(tractor);
             var turnCommand = new TurnClockwiseCommand(tractor);
 
@@ -69,7 +69,7 @@ namespace Sbt.Test.Refactoring.Tests
         [TestMethod]
         public void TestShouldThrowExceptionIfFallsOffPlateau()
         {
-            Tractor tractor = new Tractor();
+            Tractor tractor = new Tractor(new Field() { Height = 5, Width = 5 });
             var moveCommand = new MoveForwardCommand(tractor);
 
             moveCommand.Execute();
@@ -83,7 +83,7 @@ namespace Sbt.Test.Refactoring.Tests
                 moveCommand.Execute();
                 Assert.Fail("Tractor was expected to fall off the plateau");
             }
-            catch (TractorInDitchException ex)
+            catch (TractorInDitchException)
             {
             }
         }

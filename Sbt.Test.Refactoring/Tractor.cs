@@ -9,20 +9,23 @@ namespace Sbt.Test.Refactoring
     public class Tractor : Unit, IPositionState, IOrientationState, IMoveForwardBehaviour, ITurnClockwiseBehaviour
     {
         // Внутренние переменные
-        private readonly int[] _field = new int[] { 5, 5 };
-        private Orientation _orientation = Orientation.North;
         private Position _position = new Position(0, 0);
 
         // Направление
-        public Orientation UnitOrientation => _orientation;
+        public Orientation UnitOrientation { get; private set; } = Orientation.North;
 
         // Позиция
         public Position UnitPosition => _position;
 
+        // Конструктор
+        public Tractor(Field field) : base(field)
+        {
+        }
+
         // Движение вперед
         public void MoveForward()
         {
-            switch (_orientation)
+            switch (UnitOrientation)
             {
                 // Север
                 case Orientation.North:
@@ -46,7 +49,7 @@ namespace Sbt.Test.Refactoring
             }
 
             // Падение в ров
-            if (_position.X > _field[0] || _position.Y > _field[1])
+            if (_position.X > UnitField.Width || _position.Y > UnitField.Height)
             {
                 throw new TractorInDitchException();
             }
@@ -55,26 +58,26 @@ namespace Sbt.Test.Refactoring
         // Поворот
         public void TurnClockwise()
         {
-            switch (_orientation)
+            switch (UnitOrientation)
             {
                 // Север
                 case Orientation.North:
-                    _orientation = Orientation.East;
+                    UnitOrientation = Orientation.East;
                     break;
 
                 // Восток
                 case Orientation.East:
-                    _orientation = Orientation.South;
+                    UnitOrientation = Orientation.South;
                     break;
 
                 // Юг
                 case Orientation.South:
-                    _orientation = Orientation.West;
+                    UnitOrientation = Orientation.West;
                     break;
 
                 // Запад
                 case Orientation.West:
-                    _orientation = Orientation.North;
+                    UnitOrientation = Orientation.North;
                     break;
             }
         }

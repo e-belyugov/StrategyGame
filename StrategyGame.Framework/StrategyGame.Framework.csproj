@@ -44,6 +44,7 @@
   <ItemGroup>
     <Compile Include="Behaviour\ITurnClockwiseBehaviour.cs" />
     <Compile Include="Behaviour\IMoveForwardBehaviour.cs" />
+    <Compile Include="Common\Field.cs" />
     <Compile Include="States\IOrientationState.cs" />
     <Compile Include="States\IPositionState.cs" />
     <Compile Include="Common\Orientation.cs" />
@@ -52,7 +53,9 @@
     <Compile Include="Commands\TurnClockwiseCommand.cs" />
     <Compile Include="Commands\ICommand.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Units\Stone.cs" />
     <Compile Include="Units\Unit.cs" />
+    <Compile Include="Units\Wind.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
