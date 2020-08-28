@@ -1,4 +1,4 @@
-﻿namespace StrategyGame.Framework.Abstract.State
+﻿namespace StrategyGame.Framework.Common
 {
     // Перечисление для направления
     public enum Orientation

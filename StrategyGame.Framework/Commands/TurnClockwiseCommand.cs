@@ -1,23 +1,23 @@
 ﻿using System.Collections.Generic;
-using StrategyGame.Framework.Abstract.Base;
-using StrategyGame.Framework.Abstract.Behaviour;
+using StrategyGame.Framework.Behaviour;
+using StrategyGame.Framework.Units;
 
-namespace StrategyGame.Framework.Concrete.Commands
+namespace StrategyGame.Framework.Commands
 {
     // Команда "Поворот"
     public class TurnClockwiseCommand
     {
         // Коллекция юнитов
-        private IEnumerable<IUnit> _units;
+        private IEnumerable<Unit> _units;
 
         // Конструктор с одним юнитом
-        public TurnClockwiseCommand(IUnit unit)
+        public TurnClockwiseCommand(Unit unit)
         {
-            _units = new List<IUnit>() { unit };
+            _units = new List<Unit>() { unit };
         }
 
         // Конструктор с коллекцией юнитов
-        public TurnClockwiseCommand(IEnumerable<IUnit> units)
+        public TurnClockwiseCommand(IEnumerable<Unit> units)
         {
             _units = units;
         }
@@ -27,7 +27,7 @@ namespace StrategyGame.Framework.Concrete.Commands
         {
             foreach (var unit in _units)
             {
-                var turner = unit as IClockwiseTurner;
+                var turner = unit as ITurnClockwiseBehaviour;
                 turner?.TurnClockwise();
             }
         }

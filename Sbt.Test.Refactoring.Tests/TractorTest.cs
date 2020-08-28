@@ -1,6 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using StrategyGame.Framework.Abstract.State;
-using StrategyGame.Framework.Concrete.Commands;
+using StrategyGame.Framework.Commands;
+using StrategyGame.Framework.Common;
 
 namespace Sbt.Test.Refactoring.Tests
 {

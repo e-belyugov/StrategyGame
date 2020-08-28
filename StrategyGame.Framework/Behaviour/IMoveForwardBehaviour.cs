@@ -1,7 +1,7 @@
-﻿namespace StrategyGame.Framework.Abstract.Behaviour
+﻿namespace StrategyGame.Framework.Behaviour
 {
     // Интерфейс поведения "Движение вперед"
-    public interface IForwardMover
+    public interface IMoveForwardBehaviour
     {
         // Движение вперед
         void MoveForward();

@@ -1,4 +1,4 @@
-﻿namespace StrategyGame.Framework.Abstract.Base
+﻿namespace StrategyGame.Framework.Commands
 {
     // Базовый интерфейс для команд
     interface ICommand

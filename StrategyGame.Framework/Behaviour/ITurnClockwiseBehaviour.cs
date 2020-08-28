@@ -1,7 +1,7 @@
-﻿namespace StrategyGame.Framework.Abstract.Behaviour
+﻿namespace StrategyGame.Framework.Behaviour
 {
     // Интерфейс поведения "Поворот"
-    public interface IClockwiseTurner
+    public interface ITurnClockwiseBehaviour
     {
         // Поворот
         void TurnClockwise();

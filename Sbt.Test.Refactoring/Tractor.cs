@@ -1,11 +1,12 @@
-﻿using StrategyGame.Framework.Abstract.Base;
-using StrategyGame.Framework.Abstract.Behaviour;
-using StrategyGame.Framework.Abstract.State;
+﻿using StrategyGame.Framework.Behaviour;
+using StrategyGame.Framework.Common;
+using StrategyGame.Framework.States;
+using StrategyGame.Framework.Units;
 
 namespace Sbt.Test.Refactoring
 {
     // Юнит "Трактор"
-    public class Tractor : IUnit, IPositionState, IOrientationState, IForwardMover, IClockwiseTurner
+    public class Tractor : Unit, IPositionState, IOrientationState, IMoveForwardBehaviour, ITurnClockwiseBehaviour
     {
         // Внутренние переменные
         private readonly int[] _field = new int[] { 5, 5 };
@@ -21,37 +22,31 @@ namespace Sbt.Test.Refactoring
         // Движение вперед
         public void MoveForward()
         {
-            var x = _position.X;
-            int y = _position.Y;
-
             switch (_orientation)
             {
                 // Север
                 case Orientation.North:
-                    y++;
+                    _position.Y++;
                     break;
 
                 // Восток
                 case Orientation.East:
-                    x++;
+                    _position.X++;
                     break;
 
                 // Юг
                 case Orientation.South:
-                    y--;
+                    _position.Y--;
                     break;
 
                 // Запад
                 case Orientation.West:
-                    x--;
+                    _position.X--;
                     break;
             }
 
-            // Переход на новую позицию
-            if (x != _position.X || y != _position.Y) _position = new Position(x, y);
-
             // Падение в ров
-            if (x > _field[0] || y > _field[1])
+            if (_position.X > _field[0] || _position.Y > _field[1])
             {
                 throw new TractorInDitchException();
             }
@@ -60,33 +55,28 @@ namespace Sbt.Test.Refactoring
         // Поворот
         public void TurnClockwise()
         {
-            var orientation = _orientation;
-
-            switch (orientation)
+            switch (_orientation)
             {
                 // Север
                 case Orientation.North:
-                    orientation = Orientation.East;
+                    _orientation = Orientation.East;
                     break;
 
                 // Восток
                 case Orientation.East:
-                    orientation = Orientation.South;
+                    _orientation = Orientation.South;
                     break;
 
                 // Юг
                 case Orientation.South:
-                    orientation = Orientation.West;
+                    _orientation = Orientation.West;
                     break;
 
                 // Запад
                 case Orientation.West:
-                    orientation = Orientation.North;
+                    _orientation = Orientation.North;
                     break;
             }
-
-            // Поворот в новом направлении
-            _orientation = orientation;
         }
     }
 }

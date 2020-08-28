@@ -1,4 +1,4 @@
-﻿namespace StrategyGame.Framework.Abstract.State
+﻿namespace StrategyGame.Framework.Common
 {
     // Структура для позиции
     public struct Position
